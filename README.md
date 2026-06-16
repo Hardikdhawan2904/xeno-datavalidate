@@ -4,6 +4,8 @@ A browser-based CSV validation platform built for the Xeno Implementation Intern
 
 **Live Demo:** https://xeno-datavalidate.vercel.app/
 
+**Walkthrough Video:** https://www.loom.com/share/d8bf38632f31460e94a0a48c684f1817
+
 ---
 
 ## Features

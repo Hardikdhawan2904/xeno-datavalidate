@@ -1,6 +1,6 @@
 # DataValidate – Transaction Data Validation Platform
 
-A browser-based CSV validation platform built for the Xeno Implementation Internship 2026.
+A browser-based CSV validation platform built for the Xeno Implementation Assignment 2026.
 
 **Live Demo:** https://xeno-datavalidate.vercel.app/
 
@@ -46,4 +46,4 @@ A browser-based CSV validation platform built for the Xeno Implementation Intern
 Hardik Dhawan  
 SRM Institute of Science and Technology  
 B.Tech CSE – AI & ML  
-Xeno Implementation Internship 2026
+Xeno Implementation Assignment 2026

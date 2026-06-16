@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataValidate – Transaction Data Validator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">⚡ DataValidate</div>
+    <p class="tagline">Transaction Data Validation &amp; Processing Platform</p>
+  </header>
+
+  <main>
+    <!-- STEP 1: UPLOAD -->
+    <section id="step-upload" class="card active">
+      <h2><span class="step-badge">1</span> Upload Dataset</h2>
+      <p class="section-desc" style="margin-bottom:24px;">Upload transaction data containing order, product, and payment details for validation and processing. <span class="examples-hint">Examples: orders.csv, transactions.csv</span></p>
+      <div id="drop-zone">
+        <div class="drop-icon" id="drop-icon">📂</div>
+        <p id="drop-label">Drag &amp; drop your CSV file here</p>
+        <p class="sub">or</p>
+        <label class="btn-primary" for="file-input">Browse File</label>
+        <input type="file" id="file-input" accept=".csv" hidden />
+        <div class="format-badges">
+          <span class="format-badge">CSV</span>
+          <span class="format-badge">UTF-8</span>
+          <span class="format-badge">Up to 100 MB</span>
+        </div>
+      </div>
+      <div id="file-info" class="hidden"></div>
+    </section>
+
+    <!-- STEP 2: COLUMN MAPPING -->
+    <section id="step-mapping" class="card hidden">
+      <h2><span class="step-badge">2</span> Column Mapping &amp; Rules</h2>
+      <div id="mapping-file-banner" class="mapping-file-banner"></div>
+      <p class="section-desc">Tell us which columns contain phone numbers and dates so we can apply the right validation rules.</p>
+
+      <div class="mapping-grid">
+        <div class="mapping-group">
+          <h3>📞 Phone Number Columns</h3>
+          <div id="phone-col-list"></div>
+          <div class="country-rules">
+            <h4>Country Rules (configurable)</h4>
+            <div id="country-rules-list"></div>
+            <button class="btn-ghost" id="add-country-rule">+ Add Country Rule</button>
+          </div>
+        </div>
+
+        <div class="mapping-group">
+          <h3>📅 Date / DateTime Columns</h3>
+          <div id="date-col-list"></div>
+          <div class="date-formats">
+            <h4>Accepted Formats</h4>
+            <div id="date-format-list"></div>
+            <button class="btn-ghost" id="add-date-format">+ Add Format</button>
+          </div>
+        </div>
+
+        <div class="mapping-group">
+          <h3>🔑 Required Fields</h3>
+          <div id="required-col-list"></div>
+        </div>
+
+        <div class="mapping-group">
+          <h3>⚙️ General Settings</h3>
+          <label class="toggle-row">
+            <input type="checkbox" id="check-duplicates" checked />
+            <span>Flag duplicate Order IDs</span>
+          </label>
+          <label class="toggle-row">
+            <input type="checkbox" id="check-negative" checked />
+            <span>Flag negative amounts</span>
+          </label>
+          <label class="toggle-row">
+            <input type="checkbox" id="check-email" checked />
+            <span>Validate email format</span>
+          </label>
+          <div class="chunk-setting">
+            <label>Chunk size</label>
+            <input type="number" id="chunk-size" value="500" min="10" max="100000" />
+            <span>rows per file</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-secondary" id="back-to-upload">← Back</button>
+        <button class="btn-primary" id="run-validation">Run Validation →</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: RESULTS -->
+    <section id="step-results" class="card hidden">
+      <h2><span class="step-badge">3</span> Validation Results</h2>
+
+      <div id="summary-stats" class="stats-row"></div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="errors">Errors</button>
+        <button class="tab" data-tab="preview">Data Preview</button>
+      </div>
+
+      <div id="tab-errors" class="tab-content active">
+        <div class="error-filters">
+          <input type="text" id="error-search" placeholder="🔍 Search issues…" />
+          <select id="error-type-filter">
+            <option value="all">All Types</option>
+            <option value="error">Errors only</option>
+            <option value="warning">Warnings only</option>
+          </select>
+          <select id="error-field-filter">
+            <option value="all">All Fields</option>
+          </select>
+        </div>
+        <div id="error-list"></div>
+      </div>
+
+      <div id="tab-preview" class="tab-content hidden">
+        <div id="data-preview"></div>
+      </div>
+
+      <div class="download-section">
+        <h3>📥 Download</h3>
+        <div class="download-row">
+          <button class="btn-primary" id="download-cleaned">Download Cleaned CSV</button>
+          <button class="btn-secondary" id="download-full">Download Full CSV (with error column)</button>
+          <button class="btn-secondary" id="download-chunks">Download as Chunks (ZIP)</button>
+        </div>
+        <p class="hint" id="chunk-info"></p>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-secondary" id="back-to-mapping">← Back to Config</button>
+        <button class="btn-ghost" id="new-file">Upload New File</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>DataValidate · Xeno Implementation Internship 2026 · Built by Hardik Dhawan</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
